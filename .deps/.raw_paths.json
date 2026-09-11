@@ -18,5 +18,11 @@
   "@openzeppelin/contracts@5.6.1/utils/math/SafeCast.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/math/SafeCast.sol",
   "@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Pausable.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Pausable.sol",
   "@openzeppelin/contracts@5.6.1/utils/Pausable.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Pausable.sol",
-  "@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Supply.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Supply.sol"
+  "@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Supply.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Supply.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/Strings.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Strings.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/Bytes.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Bytes.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/Math.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/Math.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/Panic.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Panic.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/SafeCast.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SafeCast.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/SignedMath.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SignedMath.sol"
 }
