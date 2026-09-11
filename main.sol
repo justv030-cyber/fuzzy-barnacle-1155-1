@@ -11,9 +11,15 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
     uint256 public publicMintPrice = 0.002 ether;
 
+    uint256 public whiteListMint = 0.001 ether;
+
     uint256 public maxSupply = 400;
 
     address public ownerContract;
+
+    bool public allowListMintOpen = true;
+
+    bool public PublicMintOpen = false;
 
     constructor(
         address initialOwner
@@ -28,6 +34,14 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
         _setURI(newuri);
     }
 
+    function setallowList(bool _allowListMintOpen) public onlyOwner {
+        allowListMintOpen = _allowListMintOpen;
+    }
+
+    function setPublicMintAllow(bool _PublicMintOpen) public onlyOwner {
+        PublicMintOpen = _PublicMintOpen;
+    }
+
     function pause() public onlyOwner {
         _pause();
     }
@@ -36,13 +50,21 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
         _unpause();
     }
 
-    function mint(uint256 id, uint256 amount) public payable {
+    function publicMint(uint256 id, uint256 amount) public payable {
+        require(PublicMintOpen, "Public Mint Is Closed");
         require(
             msg.value == publicMintPrice * amount,
             "Not Enough Money For Mint!"
         );
         require(totalSupply(id) + amount < maxSupply, "Sorry We Are Mint Out!");
         _mint(msg.sender, id, amount, "");
+    }
+
+    function allowListMint(uint256 _id, uint256 _amt) public payable onlyOwner {
+        require(allowListMint, "Allow List Mint Is Closed");
+        require(msg.value == whiteListMint * _amt, "Insufficient Balance");
+        require(totalSupply(_id) + _amt < maxSupply, "Sorry We Are Mint Out!");
+        _mint(msg.sender, _id, _amt, "");
     }
 
     function mintBatch(
