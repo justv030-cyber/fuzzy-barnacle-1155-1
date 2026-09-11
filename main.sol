@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: MIT
 // Compatible with OpenZeppelin Contracts ^5.7.0
-pragma solidity ^0.8.38;
+pragma solidity ^0.8.34;
 
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {ERC1155} from "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import {ERC1155Pausable} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Pausable.sol";
 import {ERC1155Supply} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Strings.sol";
-import "https://github.com/binodnp/openzeppelin-solidity/blob/master/contracts/payment/PaymentSplitter.sol";
+// import "https://github.com/binodnp/openzeppelin-solidity/blob/master/contracts/payment/PaymentSplitter.sol";
 
 contract Zuruki is
     ERC1155,
     Ownable,
     ERC1155Pausable,
-    ERC1155Supply,
-    PaymentSplitter
+    ERC1155Supply
+    // PaymentSplitter
 {
     uint256 public publicMintPrice = 0.002 ether;
 
@@ -35,13 +35,13 @@ contract Zuruki is
     mapping(address => uint256) public purchasesPerWallet;
 
     constructor(
-        address initialOwner,
-        address[] memory _payees,
-        uint256[] memory _shares
+        address initialOwner
+        // address[] memory _payees,
+        // uint256[] memory _shares
     )
         ERC1155("ipfs://Qmaa6TuP2s9pSKczHF4rwWhTKUdygrrDs8RmYYqCjP3Hye/")
         Ownable(initialOwner)
-        PaymentSplitter(_payees, _shares)
+        // PaymentSplitter(_payees, _shares)
     {
         ownerContract = initialOwner;
     }
