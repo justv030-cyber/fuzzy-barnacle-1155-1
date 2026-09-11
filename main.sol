@@ -21,6 +21,8 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
 
     bool public PublicMintOpen = false;
 
+    mapping(address => bool) public allowList;
+
     constructor(
         address initialOwner
     )
@@ -60,8 +62,15 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
         _mint(msg.sender, id, amount, "");
     }
 
+    function setAllowList(address[] memory _add) external onlyOwner {
+        for (uint256 i = 0; i <= _add.length; i++) {
+            allowList[_add[i]] = true;
+        }
+    }
+
     function allowListMint(uint256 _id, uint256 _amt) public payable onlyOwner {
         require(allowListMintOpen, "Allow List Mint Is Closed");
+        require(allowList[msg.sender], "You Are Not On The Allow List Thanks!");
         require(msg.value == whiteListMint * _amt, "Insufficient Balance");
         require(totalSupply(_id) + _amt < maxSupply, "Sorry We Are Mint Out!");
         _mint(msg.sender, _id, _amt, "");
