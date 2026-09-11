@@ -21,8 +21,8 @@ contract marketPlace is ReentrancyGuard, Ownable {
 
     mapping(uint256 => Listing) public listings;
 
-    constructor(address intialOwner) Ownable(intialOwner) {
-        NFT = IERC1155(intialOwner);
+    constructor(address intialOwner, address _NFTAddress) Ownable(intialOwner) {
+        NFT = IERC1155(_NFTAddress);
     }
 
     function listItem(
