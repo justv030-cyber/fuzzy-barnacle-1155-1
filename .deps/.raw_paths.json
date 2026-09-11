@@ -24,5 +24,7 @@
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/Math.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/Math.sol",
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/Panic.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Panic.sol",
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/SafeCast.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SafeCast.sol",
-  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/SignedMath.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SignedMath.sol"
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/SignedMath.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SignedMath.sol",
+  "https://raw.githubusercontent.com/binodnp/openzeppelin-solidity/master/contracts/payment/PaymentSplitter.sol": ".deps/github/binodnp/openzeppelin-solidity@master/contracts/payment/PaymentSplitter.sol",
+  "https://raw.githubusercontent.com/binodnp/openzeppelin-solidity/master/contracts/math/SafeMath.sol": ".deps/github/binodnp/openzeppelin-solidity@master/contracts/math/SafeMath.sol"
 }
