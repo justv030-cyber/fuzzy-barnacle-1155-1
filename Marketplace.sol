@@ -83,4 +83,14 @@ contract marketPlace is ReentrancyGuard {
         );
         listings[_listingId].active = false;
     }
+
+    function updatePrice(uint256 _listingId, uint256 _updatePrice) public {
+        require(listings[_listingId].active == true, "Lisiting Is Not Active");
+        require(
+            msg.sender == listings[_listingId].sellerAddress,
+            "You Are Not Seller"
+        );
+
+        listings[_listingId].pricePerItem = _updatePrice;
+    }
 }
