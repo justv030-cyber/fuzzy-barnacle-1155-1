@@ -13,14 +13,16 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
 
     uint256 public maxSupply = 400;
 
-    mapping(address => uint256) public NFTMinted;
+    address public ownerContract;
 
     constructor(
         address initialOwner
     )
         ERC1155("ipfs://Qmaa6TuP2s9pSKczHF4rwWhTKUdygrrDs8RmYYqCjP3Hye/")
         Ownable(initialOwner)
-    {}
+    {
+        ownerContract = initialOwner;
+    }
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
@@ -74,9 +76,13 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
             );
     }
 
-    function withdraw()external onlyOwner{
-        uint256 getBalance  = address(this).balance;
-        (bool sucess , )= payable(msg.sender).call{value: getBalance}("");
-        require(sucess,"Transfer Failed");
+    function withdraw() external onlyOwner {
+        require(
+            msg.sender == ownerContract,
+            "You Are Not Owner Of this Contract"
+        );
+        uint256 getBalance = address(this).balance;
+        (bool sucess, ) = payable(msg.sender).call{value: getBalance}("");
+        require(sucess, "Transfer Failed");
     }
 }
