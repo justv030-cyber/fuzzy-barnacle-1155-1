@@ -31,5 +31,7 @@
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/token/ERC1155/IERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol",
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/introspection/IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol",
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/ReentrancyGuard.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/ReentrancyGuard.sol",
-  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/StorageSlot.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/StorageSlot.sol"
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/StorageSlot.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/StorageSlot.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/access/Ownable.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/access/Ownable.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/Context.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Context.sol"
 }

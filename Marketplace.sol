@@ -3,8 +3,9 @@ pragma solidity ^0.8.34;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155.sol";
 import "http://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 
-contract marketPlace is ReentrancyGuard {
+contract marketPlace is ReentrancyGuard, Ownable {
     uint256 public listingId;
     IERC1155 public NFT;
 
@@ -20,7 +21,7 @@ contract marketPlace is ReentrancyGuard {
 
     mapping(uint256 => Listing) public listings;
 
-    constructor(address intialOwner) {
+    constructor(address intialOwner) Ownable(intialOwner) {
         NFT = IERC1155(intialOwner);
     }
 
@@ -92,5 +93,13 @@ contract marketPlace is ReentrancyGuard {
         );
 
         listings[_listingId].pricePerItem = _updatePrice;
+    }
+
+    function withdrawFees() public onlyOwner nonReentrant {
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No fees available");
+
+        (bool sucess, ) = payable(msg.sender).call{value: balance}("");
+        require(sucess, "Transfer Failedx");
     }
 }
