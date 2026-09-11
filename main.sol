@@ -59,7 +59,7 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
     function publicMint(uint256 id, uint256 amount) public payable {
         require(PublicMintOpen, "Public Mint Is Closed");
         require(
-            purchasesPerWallet[msg.sender] <= purchasesPerWallet,
+            purchasesPerWallet[msg.sender] + amount <= maxPerWallet,
             "Wallet Limit Is Reached"
         );
         require(
