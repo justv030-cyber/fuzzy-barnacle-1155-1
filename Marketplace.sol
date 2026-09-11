@@ -4,11 +4,11 @@ pragma solidity ^0.8.34;
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155.sol";
 import "http://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol";
 
-contract marketPlace is ReentrancyGuard  {
+contract marketPlace is ReentrancyGuard {
     uint256 public listingId;
     IERC1155 public NFT;
 
-    uint256 marketplaceFee=250;//2.5%
+    uint256 marketplaceFee = 250; //2.5%
 
     struct Listing {
         address sellerAddress;
@@ -55,6 +55,8 @@ contract marketPlace is ReentrancyGuard  {
             listings[_listingId].amount;
         require(msg.value == price, "Insufficient Funds");
 
+        listings[_listingId].active = false;
+
         NFT.safeTransferFrom(
             listings[_listingId].sellerAddress,
             msg.sender,
@@ -63,11 +65,7 @@ contract marketPlace is ReentrancyGuard  {
             ""
         );
 
-
-
-        listings[_listingId].active = false;
-
-        uint256 Fees = msg.value * marketplaceFee / 10000;
+        uint256 Fees = (msg.value * marketplaceFee) / 10000;
 
         uint256 sendPrice = msg.value - Fees;
 
@@ -75,5 +73,14 @@ contract marketPlace is ReentrancyGuard  {
             value: sendPrice
         }("");
         require(sucess, "Transfer Failed");
+    }
+
+    function cancelListing(uint256 _listingId) public {
+        require(listings[_listingId].active == true, "NFT Is Not Listed");
+        require(
+            msg.sender == listings[_listingId].sellerAddress,
+            "You Are Not Seller"
+        );
+        listings[_listingId].active = false;
     }
 }
