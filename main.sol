@@ -61,7 +61,7 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
     }
 
     function allowListMint(uint256 _id, uint256 _amt) public payable onlyOwner {
-        require(allowListMint, "Allow List Mint Is Closed");
+        require(allowListMintOpen, "Allow List Mint Is Closed");
         require(msg.value == whiteListMint * _amt, "Insufficient Balance");
         require(totalSupply(_id) + _amt < maxSupply, "Sorry We Are Mint Out!");
         _mint(msg.sender, _id, _amt, "");
