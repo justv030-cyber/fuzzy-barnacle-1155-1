@@ -26,5 +26,8 @@
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/SafeCast.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SafeCast.sol",
   "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/math/SignedMath.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SignedMath.sol",
   "https://raw.githubusercontent.com/binodnp/openzeppelin-solidity/master/contracts/payment/PaymentSplitter.sol": ".deps/github/binodnp/openzeppelin-solidity@master/contracts/payment/PaymentSplitter.sol",
-  "https://raw.githubusercontent.com/binodnp/openzeppelin-solidity/master/contracts/math/SafeMath.sol": ".deps/github/binodnp/openzeppelin-solidity@master/contracts/math/SafeMath.sol"
+  "https://raw.githubusercontent.com/binodnp/openzeppelin-solidity/master/contracts/math/SafeMath.sol": ".deps/github/binodnp/openzeppelin-solidity@master/contracts/math/SafeMath.sol",
+  "@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Burnable.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/token/ERC1155/extensions/ERC1155Burnable.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/token/ERC1155/IERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol",
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/utils/introspection/IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
 }
