@@ -13,6 +13,8 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
 
     uint256 public whiteListMint = 0.001 ether;
 
+    uint256 public maxPerWallet = 10;
+
     uint256 public maxSupply = 400;
 
     address public ownerContract;
@@ -22,6 +24,8 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
     bool public PublicMintOpen = false;
 
     mapping(address => bool) public allowList;
+
+    mapping(address => uint256) public purchasesPerWallet;
 
     constructor(
         address initialOwner
@@ -55,11 +59,16 @@ contract Zuruki is ERC1155, Ownable, ERC1155Pausable, ERC1155Supply {
     function publicMint(uint256 id, uint256 amount) public payable {
         require(PublicMintOpen, "Public Mint Is Closed");
         require(
+            purchasesPerWallet[msg.sender] <= purchasesPerWallet,
+            "Wallet Limit Is Reached"
+        );
+        require(
             msg.value == publicMintPrice * amount,
             "Not Enough Money For Mint!"
         );
         require(totalSupply(id) + amount < maxSupply, "Sorry We Are Mint Out!");
         _mint(msg.sender, id, amount, "");
+        purchasesPerWallet[msg.sender] += amount;
     }
 
     function setAllowList(address[] memory _add) external onlyOwner {
