@@ -28,15 +28,28 @@ contract marketPlace is ReentrancyGuard, Ownable {
         royaltyNFT = IERC2981(_NFTAddress);
     }
 
+    // event item listed
+
+    event ItemListed(
+        uint256 listingId,
+        address seller,
+        uint256 tokenId,
+        uint256 amount,
+        uint256 pricePerItem
+    );
+
+    //custom error
+
+    error NotEnoughToList();
+
     function listItem(
         uint256 _tokenId,
         uint256 _amt,
         uint256 _pricePerItem
     ) public {
-        require(
-            NFT.balanceOf(msg.sender, _tokenId) >= _amt,
-            "Not enough to list"
-        );
+        if (NFT.balanceOf(msg.sender, _tokenId) >= _amt) {
+            revert NotEnoughToList();
+        }
         require(
             NFT.isApprovedForAll(msg.sender, address(this)),
             "NFT Is No Approve"
@@ -50,6 +63,8 @@ contract marketPlace is ReentrancyGuard, Ownable {
             pricePerItem: _pricePerItem,
             active: true
         });
+
+        emit ItemListed(_tokenId, msg.sender, _tokenId, _amt, _pricePerItem);
     }
 
     function buyItem(
