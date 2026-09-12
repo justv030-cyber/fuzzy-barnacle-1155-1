@@ -121,7 +121,7 @@ contract marketPlace is ReentrancyGuard, Ownable {
     function buyMultipleItems(
         uint256[] calldata _listingIds,
         uint256[] calldata _amounts
-    ) public payable {
+    ) public payable nonReentrant {
         uint256 totalPrice = 0;
         require(_listingIds.length == _amounts.length, "Invalid Length");
 
@@ -153,6 +153,17 @@ contract marketPlace is ReentrancyGuard, Ownable {
                 _amounts[i],
                 ""
             );
+
+            uint256 salePrice = listings[_listingIds[i]].pricePerItem *
+                _amounts[i];
+
+            uint256 Fees = (salePrice * marketplaceFee) / 10000;
+
+            uint256 SellerAmount = salePrice - Fees;
+
+            (bool sucess, ) = payable(listings[_listingIds[i]].sellerAddress)
+                .call{value: SellerAmount}("");
+            require(sucess, "Trannsfer Failed Please Try Again Later!");
         }
         require(msg.value == totalPrice, "Insufficient Balance");
     }
