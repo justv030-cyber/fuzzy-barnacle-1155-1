@@ -121,13 +121,39 @@ contract marketPlace is ReentrancyGuard, Ownable {
     function buyMultipleItems(
         uint256[] calldata _listingIds,
         uint256[] calldata _amounts
-    ) public {
+    ) public payable {
+        uint256 totalPrice = 0;
         require(_listingIds.length == _amounts.length, "Invalid Length");
 
         for (uint256 i = 0; i < _listingIds.length; i++) {
             require(listings[_listingIds[i]].active, "Lisitng Is Not Active");
             require(listings[_listingIds[i]].amount > 0, "Invalid Amounts");
-            require(_amounts[i] <= listings[_listingIds[i]].amount,"Invali Amounts Thanks!");
+            require(
+                _amounts[i] <= listings[_listingIds[i]].amount,
+                "Invali Amounts Thanks!"
+            );
+
+            totalPrice += listings[_listingIds[i]].pricePerItem * _amounts[i];
+
+            uint256 remainingBalance = listings[_listingIds[i]].amount -
+                _amounts[i];
+
+            listings[_listingIds[i]].amount = remainingBalance;
+
+            if (remainingBalance == 0) {
+                listings[_listingIds[i]].active = false;
+            } else {
+                listings[_listingIds[i]].active = true;
+            }
+
+            NFT.safeTransferFrom(
+                listings[_listingIds[i]].sellerAddress,
+                msg.sender,
+                listings[_listingIds[i]].tokenId,
+                _amounts[i],
+                ""
+            );
         }
+        require(msg.value == totalPrice, "Insufficient Balance");
     }
 }
