@@ -172,12 +172,27 @@ contract marketPlace is ReentrancyGuard, Ownable {
             uint256 salePrice = listings[_listingIds[i]].pricePerItem *
                 _amounts[i];
 
+            (address royalyAddress, uint256 royaltyAmmount) = royaltyNFT
+                .royaltyInfo(listings[_listingIds[i]].tokenId, salePrice);
+
             uint256 Fees = (salePrice * marketplaceFee) / 10000;
 
-            uint256 SellerAmount = salePrice - Fees;
+            require(
+                royaltyAmmount + Fees <= salePrice,
+                "Fees exceed sale price"
+            );
+
+            uint256 sellerAmount = salePrice - royaltyAmmount - Fees;
+
+            if (royaltyAmmount > 0) {
+                (bool sucess, ) = payable(royalyAddress).call{
+                    value: royaltyAmmount
+                }("");
+                require(sucess, "Transfer Failes");
+            }
 
             (bool sucess, ) = payable(listings[_listingIds[i]].sellerAddress)
-                .call{value: SellerAmount}("");
+                .call{value: sellerAmount}("");
             require(sucess, "Trannsfer Failed Please Try Again Later!");
         }
         require(msg.value == totalPrice, "Insufficient Balance");
