@@ -51,7 +51,7 @@ contract marketPlace is ReentrancyGuard, Ownable {
         if (NFT.balanceOf(msg.sender, _tokenId) <= _amt) {
             revert NotEnoughToList();
         }
-        if (NFT.isApprovedForAll(msg.sender, _tokenId);) {
+        if (NFT.isApprovedForAll(msg.sender,address(this))) {
             revert NotApprove();
         }
         listingId++;
