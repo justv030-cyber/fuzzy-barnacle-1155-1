@@ -4,10 +4,12 @@ pragma solidity ^0.8.34;
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/interfaces/IERC2981.sol";
 
 contract marketPlace is ReentrancyGuard, Ownable {
     uint256 public listingId;
     IERC1155 public NFT;
+    IERC2981 public royaltyNFT;
 
     uint256 public marketplaceFee = 250; //2.5%
 
@@ -23,6 +25,7 @@ contract marketPlace is ReentrancyGuard, Ownable {
 
     constructor(address intialOwner, address _NFTAddress) Ownable(intialOwner) {
         NFT = IERC1155(_NFTAddress);
+        royaltyNFT = IERC2981(_NFTAddress);
     }
 
     function listItem(
@@ -63,6 +66,9 @@ contract marketPlace is ReentrancyGuard, Ownable {
         uint256 price = listings[_listingId].pricePerItem * _amount;
         require(msg.value == price, "Insufficient Funds");
 
+        (address _royaltyreceiver, uint256 _RoyaltyAmount) = royaltyNFT
+            .royaltyInfo(listings[_listingId].tokenId, price);
+
         uint256 RemainingBalance = listings[_listingId].amount - _amount;
 
         listings[_listingId].amount = RemainingBalance;
@@ -81,12 +87,21 @@ contract marketPlace is ReentrancyGuard, Ownable {
             listings[_listingId].active = true;
         }
 
-        uint256 Fees = (msg.value * marketplaceFee) / 10000;
+        uint256 fees = (price * marketplaceFee) / 10000;
 
-        uint256 sendPrice = msg.value - Fees;
+        require(_RoyaltyAmount + fees <= price, "Fees exceed sale price");
+
+        uint256 sellerAmount = price - _RoyaltyAmount - fees;
+
+        if (_RoyaltyAmount > 0) {
+            (bool sucess, ) = payable(_royaltyreceiver).call{
+                value: _RoyaltyAmount
+            }("");
+            require(sucess, "Transfe Failed");
+        }
 
         (bool sucess, ) = payable(listings[_listingId].sellerAddress).call{
-            value: sendPrice
+            value: sellerAmount
         }("");
         require(sucess, "Transfer Failed");
     }
