@@ -58,10 +58,16 @@ contract MyToken is
         super._update(from, to, ids, values);
     }
 
-    
     function supportsInterface(
         bytes4 interfaceId
     ) public view virtual override(ERC1155, ERC2981) returns (bool) {
         return super.supportsInterface(interfaceId);
+    }
+
+    function setDefaultRoyalty(
+        address _recevier,
+        uint96 _royaltyPercentage
+    ) public onlyOwner {
+        _setDefaultRoyalty(_recevier, _royaltyPercentage);
     }
 }
