@@ -7,13 +7,15 @@ import {ERC1155} from "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import {ERC1155Burnable} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 import {ERC1155Pausable} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Pausable.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/common/ERC2981.sol";
+import {ERC1155Supply} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
 contract MyToken is
     ERC1155,
     Ownable,
     ERC1155Pausable,
     ERC1155Burnable,
-    ERC2981
+    ERC2981,
+    ERC1155Supply
 {
     constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {}
 
@@ -54,7 +56,7 @@ contract MyToken is
         address to,
         uint256[] memory ids,
         uint256[] memory values
-    ) internal override(ERC1155, ERC1155Pausable) {
+    ) internal override(ERC1155, ERC1155Pausable,ERC1155Supply) {
         super._update(from, to, ids, values);
     }
 

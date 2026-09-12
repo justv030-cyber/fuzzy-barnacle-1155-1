@@ -49,10 +49,10 @@ contract marketPlace is ReentrancyGuard, Ownable {
         uint256 _amt,
         uint256 _pricePerItem
     ) public {
-        if (NFT.balanceOf(msg.sender, _tokenId) <= _amt) {
+        if (NFT.balanceOf(msg.sender, _tokenId) < _amt) {
             revert NotEnoughToList();
         }
-        if (NFT.isApprovedForAll(msg.sender,address(this))) {
+        if (NFT.isApprovedForAll(msg.sender, address(this))) {
             revert NotApprove();
         }
         listingId++;
@@ -73,7 +73,7 @@ contract marketPlace is ReentrancyGuard, Ownable {
         uint256 _amount
     ) public payable nonReentrant {
         require(listings[_listingId].active == true, "Listing Is Not Active");
-        if(_amount > 0){
+        if (_amount > 0) {
             revert zeroAmmount();
         }
         require(
