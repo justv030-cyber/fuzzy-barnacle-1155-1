@@ -9,7 +9,7 @@ contract marketPlace is ReentrancyGuard, Ownable {
     uint256 public listingId;
     IERC1155 public NFT;
 
-    uint256 public  marketplaceFee = 250; //2.5%
+    uint256 public marketplaceFee = 250; //2.5%
 
     struct Listing {
         address sellerAddress;
@@ -49,14 +49,21 @@ contract marketPlace is ReentrancyGuard, Ownable {
         });
     }
 
-    function buyItem(uint256 _listingId) public payable nonReentrant {
+    function buyItem(
+        uint256 _listingId,
+        uint256 _amount
+    ) public payable nonReentrant {
         require(listings[_listingId].active == true, "Listing Is Not Active");
+        require(_amount > 0, "Invalid Amount Try Again Later!");
+        require(
+            _amount <= listings[_listingId].amount,
+            "Invalid Amount Please Try Again Later!"
+        );
 
-        uint256 price = listings[_listingId].pricePerItem *
-            listings[_listingId].amount;
+        uint256 price = listings[_listingId].pricePerItem * _amount;
         require(msg.value == price, "Insufficient Funds");
 
-        listings[_listingId].active = false;
+        uint256 RemainingBalance = listings[_listingId].amount - _amount;
 
         NFT.safeTransferFrom(
             listings[_listingId].sellerAddress,
@@ -65,6 +72,8 @@ contract marketPlace is ReentrancyGuard, Ownable {
             listings[_listingId].amount,
             ""
         );
+
+        listings[_listingId].active = false;
 
         uint256 Fees = (msg.value * marketplaceFee) / 10000;
 
