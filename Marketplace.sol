@@ -2,14 +2,14 @@
 pragma solidity ^0.8.34;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155.sol";
-import "http://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/ReentrancyGuard.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 
 contract marketPlace is ReentrancyGuard, Ownable {
     uint256 public listingId;
     IERC1155 public NFT;
 
-    uint256 marketplaceFee = 250; //2.5%
+    uint256 public  marketplaceFee = 250; //2.5%
 
     struct Listing {
         address sellerAddress;
