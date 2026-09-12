@@ -41,19 +41,19 @@ contract marketPlace is ReentrancyGuard, Ownable {
     //custom error
 
     error NotEnoughToList();
+    error NotApprove();
 
     function listItem(
         uint256 _tokenId,
         uint256 _amt,
         uint256 _pricePerItem
     ) public {
-        if (NFT.balanceOf(msg.sender, _tokenId) >= _amt) {
+        if (NFT.balanceOf(msg.sender, _tokenId) <= _amt) {
             revert NotEnoughToList();
         }
-        require(
-            NFT.isApprovedForAll(msg.sender, address(this)),
-            "NFT Is No Approve"
-        );
+        if (NFT.isApprovedForAll(msg.sender, _tokenId);) {
+            revert NotApprove();
+        }
         listingId++;
 
         listings[listingId] = Listing({
