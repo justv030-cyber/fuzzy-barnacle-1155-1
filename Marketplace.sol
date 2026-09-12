@@ -42,6 +42,7 @@ contract marketPlace is ReentrancyGuard, Ownable {
 
     error NotEnoughToList();
     error NotApprove();
+    error zeroAmmount();
 
     function listItem(
         uint256 _tokenId,
@@ -72,7 +73,9 @@ contract marketPlace is ReentrancyGuard, Ownable {
         uint256 _amount
     ) public payable nonReentrant {
         require(listings[_listingId].active == true, "Listing Is Not Active");
-        require(_amount > 0, "Invalid Amount Try Again Later!");
+        if(_amount > 0){
+            revert zeroAmmount();
+        }
         require(
             _amount <= listings[_listingId].amount,
             "Invalid Amount Please Try Again Later!"
