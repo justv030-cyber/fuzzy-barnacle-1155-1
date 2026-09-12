@@ -65,15 +65,21 @@ contract marketPlace is ReentrancyGuard, Ownable {
 
         uint256 RemainingBalance = listings[_listingId].amount - _amount;
 
+        listings[_listingId].amount = RemainingBalance;
+
         NFT.safeTransferFrom(
             listings[_listingId].sellerAddress,
             msg.sender,
             listings[_listingId].tokenId,
-            listings[_listingId].amount,
+            _amount,
             ""
         );
 
-        listings[_listingId].active = false;
+        if (listings[_listingId].amount == 0) {
+            listings[_listingId].active = false;
+        } else {
+            listings[_listingId].active = true;
+        }
 
         uint256 Fees = (msg.value * marketplaceFee) / 10000;
 
