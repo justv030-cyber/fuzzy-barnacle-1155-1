@@ -117,4 +117,17 @@ contract marketPlace is ReentrancyGuard, Ownable {
         (bool sucess, ) = payable(msg.sender).call{value: balance}("");
         require(sucess, "Transfer Failedx");
     }
+
+    function buyMultipleItems(
+        uint256[] calldata _listingIds,
+        uint256[] calldata _amounts
+    ) public {
+        require(_listingIds.length == _amounts.length, "Invalid Length");
+
+        for (uint256 i = 0; i < _listingIds.length; i++) {
+            require(listings[_listingIds[i]].active, "Lisitng Is Not Active");
+            require(listings[_listingIds[i]].amount > 0, "Invalid Amounts");
+            require(_amounts[i] <= listings[_listingIds[i]].amount,"Invali Amounts Thanks!");
+        }
+    }
 }
