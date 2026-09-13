@@ -32,4 +32,24 @@ contract MyERC1155 is ERC1155, Ownable {
         });
         nextTokenId++;
     }
+
+    function mint(
+        address _adddress,
+        uint256 tokenId,
+        uint256 _amount
+    ) public onlyOwner {
+        require(
+            tokenId > 0 && tokenId < nextTokenId,
+            "Invalid Token Id Thanks!"
+        );
+
+        tokenType _type = tokenInfo[tokenId].TokenType;
+
+        if (_type == tokenType.NFT) {
+            require(_amount > 1, "NFT Amount Must be 1");
+        }
+        require(_amount > 0, "Amount must be greater than zero");
+
+        _mint(_adddress, tokenId, _amount, "");
+    }
 }
