@@ -2,12 +2,17 @@
 pragma solidity ^0.8.34;
 
 import {ERC1155} from "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import {ERC1155Supply} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyERC1155 is ERC1155, Ownable {
-    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {}
+contract MyERC1155 is ERC1155Supply, Ownable {
 
-    enum tokenType {
+    constructor(address initialOwner)
+        ERC1155("")
+        Ownable(initialOwner)
+    {}
+
+    enum TokenType {
         Fungible,
         SemiFungible,
         NFT
@@ -15,7 +20,8 @@ contract MyERC1155 is ERC1155, Ownable {
 
     struct TokenInfo {
         string name;
-        tokenType TokenType;
+        TokenType tokenType;
+        uint256 maxSupply;
     }
 
     mapping(uint256 => TokenInfo) public tokenInfo;
@@ -24,32 +30,42 @@ contract MyERC1155 is ERC1155, Ownable {
 
     function createToken(
         string memory _tokenName,
-        tokenType _tokenTypee
+        TokenType _tokenType,
+        uint256 _maxSupply
     ) public onlyOwner {
         tokenInfo[nextTokenId] = TokenInfo({
             name: _tokenName,
-            TokenType: _tokenTypee
+            tokenType: _tokenType,
+            maxSupply: _maxSupply
         });
+
         nextTokenId++;
     }
 
     function mint(
-        address _adddress,
+        address _address,
         uint256 tokenId,
         uint256 _amount
     ) public onlyOwner {
+
         require(
             tokenId > 0 && tokenId < nextTokenId,
-            "Invalid Token Id Thanks!"
+            "Invalid Token Id"
         );
 
-        tokenType _type = tokenInfo[tokenId].TokenType;
-
-        if (_type == tokenType.NFT) {
-            require(_amount > 1, "NFT Amount Must be 1");
-        }
         require(_amount > 0, "Amount must be greater than zero");
 
-        _mint(_adddress, tokenId, _amount, "");
+        TokenType _type = tokenInfo[tokenId].tokenType;
+
+        if (_type == TokenType.NFT) {
+            require(_amount == 1, "NFT amount must be 1");
+        }
+
+        require(
+            totalSupply(tokenId) + _amount <= tokenInfo[tokenId].maxSupply,
+            "Max supply exceeded"
+        );
+
+        _mint(_address, tokenId, _amount, "");
     }
 }
