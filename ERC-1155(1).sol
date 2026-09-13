@@ -21,4 +21,15 @@ contract MyERC1155 is ERC1155, Ownable {
     mapping(uint256 => TokenInfo) public tokenInfo;
 
     uint256 public nextTokenId = 1;
+
+    function createToken(
+        string memory _tokenName,
+        tokenType _tokenTypee
+    ) public onlyOwner {
+        tokenInfo[nextTokenId] = TokenInfo({
+            name: _tokenName,
+            TokenType: _tokenTypee
+        });
+        nextTokenId++;
+    }
 }
