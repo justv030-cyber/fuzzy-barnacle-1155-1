@@ -6,11 +6,7 @@ import {ERC1155Supply} from "@openzeppelin/contracts/token/ERC1155/extensions/ER
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyERC1155 is ERC1155Supply, Ownable {
-
-    constructor(address initialOwner)
-        ERC1155("")
-        Ownable(initialOwner)
-    {}
+    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {}
 
     enum TokenType {
         Fungible,
@@ -47,11 +43,7 @@ contract MyERC1155 is ERC1155Supply, Ownable {
         uint256 tokenId,
         uint256 _amount
     ) public onlyOwner {
-
-        require(
-            tokenId > 0 && tokenId < nextTokenId,
-            "Invalid Token Id"
-        );
+        require(tokenId > 0 && tokenId < nextTokenId, "Invalid Token Id");
 
         require(_amount > 0, "Amount must be greater than zero");
 
@@ -67,5 +59,35 @@ contract MyERC1155 is ERC1155Supply, Ownable {
         );
 
         _mint(_address, tokenId, _amount, "");
+    }
+
+    function mintBatch(
+        address _address,
+        uint256[] calldata tokenIds,
+        uint256[] calldata amounts
+    ) public onlyOwner {
+        require(tokenIds.length == amounts.length, "Invalid Length Thanks!");
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            require(
+                tokenIds[i] > 0 && tokenIds[i] < nextTokenId,
+                "Invalid Token ID"
+            );
+            require(amounts[i] > 0, "Amount must be greater than zero");
+
+            TokenType _type = tokenInfo[tokenIds[i]].tokenType;
+
+            if (_type == TokenType.NFT) {
+                require(amounts[i] == 1, "NFT amount must be 1");
+            }
+
+            require(
+                totalSupply(tokenIds[i]) + amounts[i] <=
+                    tokenInfo[tokenIds[i]].maxSupply,
+                "Max supply exceeded"
+            );
+
+           
+        }
+        _mintBatch(_address, tokenIds, amounts, "");
     }
 }
