@@ -628,42 +628,6 @@
   "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol": {
     "../../utils/introspection/IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
   },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Arrays.sol": {
-    "./Comparators.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Comparators.sol",
-    "./math/Math.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/Math.sol",
-    "./SlotDerivation.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/SlotDerivation.sol",
-    "./StorageSlot.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/StorageSlot.sol"
-  },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/Math.sol": {
-    "../Panic.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Panic.sol",
-    "./SafeCast.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SafeCast.sol"
-  },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/extensions/ERC1155Supply.sol": {
-    "../../../utils/Arrays.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Arrays.sol",
-    "../ERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/ERC1155.sol"
-  },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/ERC1155.sol": {
-    "../../interfaces/IERC6093.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/interfaces/IERC6093.sol",
-    "../../utils/Arrays.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Arrays.sol",
-    "../../utils/Context.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Context.sol",
-    "../../utils/introspection/ERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/ERC165.sol",
-    "./extensions/IERC1155MetadataURI.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol",
-    "./IERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol",
-    "./utils/ERC1155Utils.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/utils/ERC1155Utils.sol"
-  },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/ERC165.sol": {
-    "./IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
-  },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol": {
-    "../../utils/introspection/IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
-  },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
-    "../IERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol"
-  },
-  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/utils/ERC1155Utils.sol": {
-    "../../../interfaces/IERC6093.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/interfaces/IERC6093.sol",
-    "../IERC1155Receiver.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155Receiver.sol"
-  },
   "@openzeppelin/contracts@5.6.1/token/ERC1155/IERC1155.sol": {
     "../../utils/introspection/IERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/IERC165.sol"
   },
@@ -789,14 +753,49 @@
   "@openzeppelin/contracts@5.6.1/access/Ownable.sol": {
     "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol"
   },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/ERC1155.sol": {
+    "../../interfaces/IERC6093.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/interfaces/IERC6093.sol",
+    "../../utils/Arrays.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Arrays.sol",
+    "../../utils/Context.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Context.sol",
+    "../../utils/introspection/ERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/ERC165.sol",
+    "./extensions/IERC1155MetadataURI.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol",
+    "./IERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol",
+    "./utils/ERC1155Utils.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/utils/ERC1155Utils.sol"
+  },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Arrays.sol": {
+    "./Comparators.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Comparators.sol",
+    "./math/Math.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/Math.sol",
+    "./SlotDerivation.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/SlotDerivation.sol",
+    "./StorageSlot.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/StorageSlot.sol"
+  },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/Math.sol": {
+    "../Panic.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Panic.sol",
+    "./SafeCast.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/math/SafeCast.sol"
+  },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol": {
+    "../../utils/introspection/IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
+  },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
+    "../IERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155.sol"
+  },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/utils/ERC1155Utils.sol": {
+    "../../../interfaces/IERC6093.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/interfaces/IERC6093.sol",
+    "../IERC1155Receiver.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155Receiver.sol"
+  },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/extensions/ERC1155Supply.sol": {
+    "../../../utils/Arrays.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/Arrays.sol",
+    "../ERC1155.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/ERC1155.sol"
+  },
   ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155Receiver.sol": {
     "../../utils/introspection/IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
   },
   "Receiver.sol": {
     "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155Receiver.sol",
+    "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/ERC165.sol",
+    "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol",
     "__sources__": {
       "Receiver.sol": {
-        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.34;\n\nimport \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol\";\n\nabstract contract Receiver is IERC1155Receiver {\n    function onERC1155Received(\n        address operator,\n        address from,\n        uint256 id,\n        uint256 value,\n        bytes calldata data\n    ) external returns (bytes4) {\n        return  this.onERC1155Received.selector;\n    }\n}\n",
+        "content": "    // SPDX-License-Identifier: MIT\n    pragma solidity ^0.8.34;\n\n    import \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol\";\n    // import \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/ERC1155.sol\";\n    // import \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/extensions/ERC1155Supply.sol\";\n    import \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol\";\n    import \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/IERC165.sol\";\n\n    contract Receiver is IERC1155Receiver ,ERC165 {\n        function onERC1155Received(\n            address operator,\n            address from,\n            uint256 id,\n            uint256 value,\n            bytes calldata data\n        ) external returns (bytes4) {\n            return this.onERC1155Received.selector;\n        }\n\n        function onERC1155BatchReceived(\n            address operator,\n            address from,\n            uint256[] calldata ids,\n            uint256[] calldata values,\n            bytes calldata data\n        ) external returns (bytes4) {\n            return this.onERC1155BatchReceived.selector;\n        }\n\n        function supportsInterface(\n            bytes4 interfaceId\n        ) public view virtual override(ERC165, IERC165) returns (bool) {\n            return\n                interfaceId == type(IERC1155Receiver).interfaceId ||\n                super.supportsInterface(interfaceId);\n        }\n    }\n",
         "file": "Receiver.sol"
       },
       "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol": {
@@ -806,7 +805,14 @@
       "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/IERC165.sol": {
         "content": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v5.4.0) (utils/introspection/IERC165.sol)\n\npragma solidity >=0.4.16;\n\n/**\n * @dev Interface of the ERC-165 standard, as defined in the\n * https://eips.ethereum.org/EIPS/eip-165[ERC].\n *\n * Implementers can declare support of contract interfaces, which can then be\n * queried by others ({ERC165Checker}).\n *\n * For an implementation, see {ERC165}.\n */\ninterface IERC165 {\n    /**\n     * @dev Returns true if this contract implements the interface defined by\n     * `interfaceId`. See the corresponding\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[ERC section]\n     * to learn more about how these ids are created.\n     *\n     * This function call must use less than 30 000 gas.\n     */\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\n}\n",
         "file": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
+      },
+      "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v5.4.0) (utils/introspection/ERC165.sol)\n\npragma solidity ^0.8.20;\n\nimport {IERC165} from \"./IERC165.sol\";\n\n/**\n * @dev Implementation of the {IERC165} interface.\n *\n * Contracts that want to implement ERC-165 should inherit from this contract and override {supportsInterface} to check\n * for the additional interface id that will be supported. For example:\n *\n * ```solidity\n * function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\n *     return interfaceId == type(MyInterface).interfaceId || super.supportsInterface(interfaceId);\n * }\n * ```\n */\nabstract contract ERC165 is IERC165 {\n    /// @inheritdoc IERC165\n    function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {\n        return interfaceId == type(IERC165).interfaceId;\n    }\n}\n",
+        "file": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/ERC165.sol"
       }
     }
+  },
+  ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/ERC165.sol": {
+    "./IERC165.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/utils/introspection/IERC165.sol"
   }
 }
