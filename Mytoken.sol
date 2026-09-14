@@ -38,9 +38,6 @@ contract MyToken is
         _unpause();
     }
 
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
-
     function mint(
         address account,
         uint256 id,
@@ -72,7 +69,7 @@ contract MyToken is
 
     function supportsInterface(
         bytes4 interfaceId
-    ) public view virtual override(ERC1155, ERC2981) returns (bool) {
+    ) public view virtual override(ERC1155, ERC2981,AccessControl) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
 
