@@ -60,5 +60,7 @@
   "https://github.com-contracts/blob/master/contracts/token/ERC1155/extensions/ERC1155Supply.sol": ".deps/http/github.com-contracts/blob/master/contracts/token/ERC1155/extensions/ERC1155Supply.sol",
   "https://gith-contracts/blob/master/contracts/token/ERC1155/extensions/ERC1155Supply.sol": ".deps/http/gith-contracts/blob/master/contracts/token/ERC1155/extensions/ERC1155Supply.sol",
   "https://g-contracts/blob/master/contracts/token/ERC1155/extensions/ERC1155Supply.sol": ".deps/http/g-contracts/blob/master/contracts/token/ERC1155/extensions/ERC1155Supply.sol",
-  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/token/ERC1155/https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol.sol"
+  "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/master/contracts/token/ERC1155/https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol.sol",
+  "@openzeppelin/contracts@5.6.1/access/AccessControl.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/access/AccessControl.sol",
+  "@openzeppelin/contracts@5.6.1/access/IAccessControl.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/access/IAccessControl.sol"
 }

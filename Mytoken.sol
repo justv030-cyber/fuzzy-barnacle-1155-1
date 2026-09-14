@@ -8,6 +8,7 @@ import {ERC1155Burnable} from "@openzeppelin/contracts/token/ERC1155/extensions/
 import {ERC1155Pausable} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Pausable.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/common/ERC2981.sol";
 import {ERC1155Supply} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
+import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract MyToken is
     ERC1155,
@@ -15,9 +16,15 @@ contract MyToken is
     ERC1155Pausable,
     ERC1155Burnable,
     ERC2981,
-    ERC1155Supply
+    ERC1155Supply,
+    AccessControl
 {
-    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {}
+    constructor(
+        address initialOwner,
+        address defaultAdmin
+    ) ERC1155("") Ownable(initialOwner) {
+        _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
+    }
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
@@ -31,12 +38,15 @@ contract MyToken is
         _unpause();
     }
 
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
+
     function mint(
         address account,
         uint256 id,
         uint256 amount,
         bytes memory data
-    ) public onlyOwner {
+    ) public onlyRole(MINTER_ROLE) {
         _mint(account, id, amount, data);
     }
 
@@ -56,7 +66,7 @@ contract MyToken is
         address to,
         uint256[] memory ids,
         uint256[] memory values
-    ) internal override(ERC1155, ERC1155Pausable,ERC1155Supply) {
+    ) internal override(ERC1155, ERC1155Pausable, ERC1155Supply) {
         super._update(from, to, ids, values);
     }
 

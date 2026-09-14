@@ -14,7 +14,8 @@
             uint256 id,
             uint256 value,
             bytes calldata data
-        ) external returns (bytes4) {
+        ) external pure 
+        returns (bytes4) {
             return this.onERC1155Received.selector;
         }
 
@@ -24,7 +25,7 @@
             uint256[] calldata ids,
             uint256[] calldata values,
             bytes calldata data
-        ) external returns (bytes4) {
+        ) external pure  returns (bytes4) {
             return this.onERC1155BatchReceived.selector;
         }
 
