@@ -26,11 +26,14 @@ contract MyToken is
         _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
     }
 
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
+
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
     }
 
-    function pause() public onlyOwner {
+    function pause() public onlyRole(PAUSER_ROLE) {
         _pause();
     }
 
@@ -52,7 +55,7 @@ contract MyToken is
         uint256[] memory ids,
         uint256[] memory amounts,
         bytes memory data
-    ) public onlyOwner {
+    ) public onlyRole(MINTER_ROLE) {
         _mintBatch(to, ids, amounts, data);
     }
 
@@ -69,7 +72,13 @@ contract MyToken is
 
     function supportsInterface(
         bytes4 interfaceId
-    ) public view virtual override(ERC1155, ERC2981,AccessControl) returns (bool) {
+    )
+        public
+        view
+        virtual
+        override(ERC1155, ERC2981, AccessControl)
+        returns (bool)
+    {
         return super.supportsInterface(interfaceId);
     }
 
