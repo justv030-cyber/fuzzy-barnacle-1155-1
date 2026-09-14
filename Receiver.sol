@@ -10,5 +10,7 @@ abstract contract Receiver is IERC1155Receiver {
         uint256 id,
         uint256 value,
         bytes calldata data
-    ) external returns (bytes4) {}
+    ) external returns (bytes4) {
+        return  this.onERC1155Received.selector;
+    }
 }

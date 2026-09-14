@@ -796,7 +796,7 @@
     "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol": ".deps/github/OpenZeppelin/openzeppelin-contracts@master/contracts/token/ERC1155/IERC1155Receiver.sol",
     "__sources__": {
       "Receiver.sol": {
-        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.34;\n\nimport \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol\";\n\nabstract contract Receiver is IERC1155Receiver {\n    function onERC1155Received(\n        address operator,\n        address from,\n        uint256 id,\n        uint256 value,\n        bytes calldata data\n    ) external returns (bytes4) {}\n}\n",
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.34;\n\nimport \"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol\";\n\nabstract contract Receiver is IERC1155Receiver {\n    function onERC1155Received(\n        address operator,\n        address from,\n        uint256 id,\n        uint256 value,\n        bytes calldata data\n    ) external returns (bytes4) {\n        return  this.onERC1155Received.selector;\n    }\n}\n",
         "file": "Receiver.sol"
       },
       "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol": {
